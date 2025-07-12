@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "command": "cds watch",
+      "name": "Shubham CAPM",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}",
+      //  "runtimeExecutable": "cds",
+      // "args": [
+      //   "serve",
+      //   "--with-mocks",
+      //   "--in-memory?"
+      // ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    }
+  ]
+}

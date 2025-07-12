@@ -1,0 +1,89 @@
+###Get Service Documet
+http://localhost:4004/odata/v4/CatalogService
+
+
+###Get Service Metadata
+
+http://localhost:4004/odata/v4/CatalogService/$metadata
+
+
+###Get Employee Data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+
+###Get Employee Singele record
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/ID
+
+
+### Insert Record in Employee Data
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+
+{  
+      "nameFirst": "Christian",
+      "nameMiddle": "Richard",
+      "nameLast": "Ronaldo",
+      "nameInitials": null,
+      "sex": "M",
+      "language": "E",
+      "phoneNumber": null,
+      "email": "christina@gmail.com",
+      "loginName": "FALLF",
+      "Currency_code": "USD",
+      "salaryAmount": 85962,
+      "accountNumber": "8877665544",
+      "bankId": "121000358",
+      "bankName": "HDFC BANK"
+    }
+
+
+### Updatte  a record
+
+PATCH http://localhost:4004/odata/v4/CatalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C19787FB
+Content-Type: application/json
+
+{
+    "nameFirst" : "Shubham",
+    "nameLast" : "Bankar",
+    "salaryAmount" : 100
+}
+
+### Delete a record
+DELETE http://localhost:4004/odata/v4/CatalogService/EmployeeSet/3f502464-f1cc-43bc-bdbd-26e13d23539d
+
+### Get Sinlgle Record 
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/3f502464-f1cc-43bc-bdbd-26e13d23539d
+
+### Load Data Chunk by Chunk - Pagination
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$top=2&$skip=2
+
+### Filtering the data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=(bankName eq 'My Bank of San Francisco')
+
+### Filter by the wild Search
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=contains(nameLast,'Wall')
+
+### Count
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/$count
+
+
+### Get all the Purchase Order
+http://localhost:4004/odata/v4/CatalogService/POs
+
+### Fetch Single Purchase Order Data
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052
+
+### Fetch Association Data
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052?$expand=Items
+
+### Get Data for ProductView
+http://localhost:4004/odata/v4/CatalogService/ProductView?$expand=To_Items
+
+###Boost the PO
+POST http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052/boost
+Content-Type: application/json
+
+###Largest Order 
+http://localhost:4004/odata/v4/CatalogService/getLargestOrder()
+
+### Call Myservice from the Tester
+http://localhost:4004/odata/v4/MyService/ReadEmployeeSrv/02BD2137-0890-1EEA-A6C2-BB55C19787FB
