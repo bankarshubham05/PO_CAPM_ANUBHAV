@@ -6,17 +6,19 @@ using {cappo.cds.CDSViews} from '../db/CDSView';
 
 //using { cappo.cds } from '../db/CDSView';
 
-service CatalogService @(path: 'CatalogService') {
+service CatalogService @(path: 'CatalogService', requires: 'authenticated-user') {
 
     //Test Stage
     // @Capabilities : { Insertable, Deletable: false }
     entity BusinessPartnerSet               as projection on master.businesspartner;
     entity AddressSet                       as projection on master.address;
 
-    @readonly
-    entity EmployeeSet                      as projection on master.employees;
+    entity EmployeeSet @(restrict: [
+                        { grant: ['WRITE'],to: 'Admin' },
+                        { grant: ['READ'], to: 'Viewer', where:'bankName = $user.BankName' }
+                        ]) as projection on master.employees;
 
-    entity PurchaseOrderItems               as projection on transaction.poitems;
+    entity PurchaseOrderItems as projection on transaction.poitems;
 
     entity POs @(odata.draft.enabled: true) as
         projection on transaction.purchaseorder {
