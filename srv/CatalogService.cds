@@ -8,7 +8,7 @@ using {cappo.cds.CDSViews} from '../db/CDSView';
 
 service CatalogService @(path: 'CatalogService') {
 
-
+    //Test Stage
     // @Capabilities : { Insertable, Deletable: false }
     entity BusinessPartnerSet               as projection on master.businesspartner;
     entity AddressSet                       as projection on master.address;
